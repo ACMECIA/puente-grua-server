@@ -1,0 +1,10 @@
+node_modules
+yarn.lock
+.vscode
+
+mariadb-data/*
+nodered
+!mariadb-data/initdb.d
+.env
+.vscode
+*.docker

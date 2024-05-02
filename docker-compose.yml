@@ -1,0 +1,52 @@
+version: "3.7"
+services:
+  db:
+    image: linuxserver/mariadb:10.6.13
+    volumes:
+      - ./mariadb/mariadb-data:/config
+    privileged: true
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      PUID: 1000
+      PGID: 1000
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      TZ: America/Lima
+
+  api:
+    depends_on:
+      - db
+    build:
+      dockerfile: ${DOCKERFILE}
+      context: ./server
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+    environment:
+      ACME_INTERNAL_PASSWORD: ${MYSQL_PASSWORD}
+      DB_USER: ${MYSQL_USER}
+      DB_NAME: acme_db
+      DB_HOST: db
+      DB_PORT: 3306
+      TZ: America/Lima
+    restart: always
+    ports:
+      - 9000:9000
+
+  client:
+    depends_on:
+      - api
+    stdin_open: true
+    build:
+      dockerfile: ${DOCKERFILE}
+      context: ./client
+    volumes:
+      - /app/node_modules
+      - ./client:/app
+    restart: always
+    ports:
+      - 3000:3000
