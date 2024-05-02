@@ -1,0 +1,84 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn install
+
+PATH: 
+  /home/del/.pyenv/versions/3.10.12/bin:/home/del/.pyenv/plugins/pyenv-virtualenv/shims:/home/del/.pyenv/shims:/home/del/.pyenv/bin:/opt/ros/noetic/bin:/home/del/.pyenv/versions/3.10.12/bin:/home/del/.pyenv/plugins/pyenv-virtualenv/shims:/home/del/.pyenv/bin:/home/del/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.18.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: EACCES: permission denied, mkdir '/home/del/Del/ACME/KOMATSU/Puente Grua/Desarrollo/puente-grua-server/client/node_modules/@alloc'
+
+npm manifest: 
+  {
+    "name": "puente-grua-dashboard",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+      "@ant-design/charts": "^1.4.2",
+      "@headlessui/react": "^1.7.17",
+      "@testing-library/jest-dom": "^5.14.1",
+      "@testing-library/react": "^13.0.0",
+      "@testing-library/user-event": "^13.2.1",
+      "antd": "^5.10.2",
+      "axios": "^1.6.0",
+      "classnames": "^2.3.2",
+      "highcharts": "^11.1.0",
+      "highcharts-react-official": "^3.2.1",
+      "leaflet": "^1.9.4",
+      "plotly.js": "^2.26.2",
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
+      "react-icons": "^4.11.0",
+      "react-leaflet": "^4.2.1",
+      "react-plotly.js": "^2.6.0",
+      "react-router-dom": "^6.17.0",
+      "react-scripts": "5.0.1",
+      "react-use-sessionstorage": "^1.0.2",
+      "recharts": "^2.10.2",
+      "use-local-storage": "^3.0.0",
+      "web-vitals": "^2.1.0"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+      "extends": [
+        "react-app",
+        "react-app/jest"
+      ]
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    },
+    "devDependencies": {
+      "cross-env": "^7.0.3",
+      "http-proxy-middleware": "^2.0.6",
+      "tailwindcss": "^3.3.3"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
