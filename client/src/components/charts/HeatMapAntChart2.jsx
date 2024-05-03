@@ -28,6 +28,7 @@ export default function HeatMapAntChart({
   ],
 }) {
   const [data, setData] = useLocalStorage(`${dataPath}`, []);
+  const [limits, setLimits] = useLocalStorage(`${dataPath}-limits`, []);
   // const [data, setData] = useState([]);
   const [dateRange, setDates] = useState([]);
 
@@ -61,6 +62,31 @@ export default function HeatMapAntChart({
     }
   };
 
+  const fetchLimits = () => {
+    if (!isFetching) {
+      setIsFetching(true);
+      fetch(`api/${serverType}/limits`, {
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data.payload);
+
+          setLimits(data.payload);
+          setIsFetching(false);
+
+          // setPosts(data);
+        })
+        .catch((err) => {
+          console.log(err.message);
+          setIsFetching(false);
+        });
+    }
+  };
+  useEffect(() => {
+    fetchLimits();
+  }, []);
+
   const DemoHeatmap = () => {
     // useEffect(() => {
     //   asyncFetch();
@@ -68,7 +94,7 @@ export default function HeatMapAntChart({
 
     const config = {
       data,
-      height: 700,
+      height: Math.round((1000 * limits.y_axis_m) / limits.x_axis_m),
 
       //   label: {
       //     fill: 'black',
@@ -91,11 +117,11 @@ export default function HeatMapAntChart({
 
       xAxis: {
         min: 0,
-        max: 100,
+        max: Math.round(limits.x_axis_m),
       },
       yAxis: {
         min: 0,
-        max: 100,
+        max: Math.round(limits.y_axis_m),
       },
 
       type: "density",

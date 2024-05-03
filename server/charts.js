@@ -79,6 +79,19 @@ ChartsRouter.post("/realtime", (req, res) => {
   });
 });
 
+ChartsRouter.get("/limits", (req, res) => {
+  var query = `SELECT * FROM persistent_data WHERE type = 'limits'`;
+
+  db.query(query, (err, data) => {
+    if (err) return res.json({ Error: "Error in the query" });
+    const transformedData = data.reduce((acc, item) => {
+      acc[item.tag] = item.json;
+      return acc;
+    }, {});
+    return res.json({ Status: "Success", payload: transformedData });
+  });
+});
+
 ChartsRouter.post("/heat1", (req, res) => {
   var heatmapJSON = [];
   var dates = req.body.filters.dateRange;
